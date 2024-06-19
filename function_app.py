@@ -8,11 +8,11 @@ app = func.FunctionApp()
 @app.route(route='chat')
 def main(req):
 
-    if 'sk-proj-mZK7CewvXtPB1BDLBbCFT3BlbkFJdt2r6GmJzhE5nt5sCyRp' not in os.environ:
-        raise RuntimeError("No 'sk-proj-mZK7CewvXtPB1BDLBbCFT3BlbkFJdt2r6GmJzhE5nt5sCyRp' env var set.  Please see Readme.")
+    if 'OPENAI_API_KEY' not in os.environ:
+        raise RuntimeError("No 'OPENAI_API_KEY' env var set.  Please see Readme.")
 
     import openai
-    openai.api_key = os.getenv('sk-proj-mZK7CewvXtPB1BDLBbCFT3BlbkFJdt2r6GmJzhE5nt5sCyRp')
+    openai.api_key = os.getenv('OPENAI_API_KEY')
 
     prompt = req.params.get('prompt') 
     if not prompt: 
